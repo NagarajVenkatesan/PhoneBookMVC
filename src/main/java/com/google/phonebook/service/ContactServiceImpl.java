@@ -3,17 +3,18 @@ package com.google.phonebook.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.phonebook.model.Contact;
 import com.google.phonebook.repo.ContactRepository;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Service
-@Slf4j
 public class ContactServiceImpl implements ContactService {
+	
+	Logger log = LoggerFactory.getLogger(ContactServiceImpl.class);
 	
 	@Autowired
 	private ContactRepository contactRepository;
@@ -45,7 +46,7 @@ public class ContactServiceImpl implements ContactService {
 	@Override
 	public boolean deleteContactById(Integer contactId) {
 		try {
-			contactRepository.deleteById(contactId);			
+			contactRepository.deleteById(contactId);
 		} catch(Exception e) {
 			log.error("ContactServiceImpl :: deleteContactById :: "+e.getMessage());
 		}
